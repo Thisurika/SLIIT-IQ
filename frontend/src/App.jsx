@@ -8,7 +8,9 @@ function App() {
       <h1>Welcome to SLIIT IQ</h1>
       
       <SignOutButton>
-        <SignInButton />
+        <SignInButton >
+          <button>Sign In</button>
+        </SignInButton> 
       </SignOutButton>
 
       <SignedIn>

@@ -1,7 +1,6 @@
 import { Inngest } from "inngest";
 import { connectDB } from "./db.js";
-import User from "../models/user.js";
-
+import User from "../models/User.js";
 
 export const inngest = new Inngest({ id: "SLIIT-IQ" });
 
@@ -18,28 +17,22 @@ const syncUser = inngest.createFunction(
       email: email_addresses[0]?.email_address,
       name: `${first_name || ""} ${last_name || ""}`,
       profileImage: image_url,
-    }
+    };
 
-    await User.create(newUSer)
+    await User.create(newUser);
   }
-
-)
-
-export const functions = { syncUser }
+);
 
 const deleteUserFromDB = inngest.createFunction(
   { id: "delete-user" },
-  { event : "clerk/user.deleted" },
+  { event: "clerk/user.deleted" },
   async ({ event }) => {
     await connectDB();
 
     const { id } = event.data;
     await User.deleteOne({ clerkId: id });
-
-    // todo: do sth else
   }
-
 );
 
-export const functions = { syncUser,deleteUserFromDB };
+export const functions = [syncUser, deleteUserFromDB];
 

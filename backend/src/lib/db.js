@@ -4,21 +4,13 @@ import { ENV } from "./env.js";
 
 export const connectDB = async () => {
   try {
-    if (!ENV.DB_URL || ENV.DB_URL.includes("<db_username>")) {
-      console.warn("⚠️ DB_URL is not configured; skipping MongoDB connection.");
-      return false;
+    if (!ENV.DB_URL) {
+      throw new Error("DB_URL is not defined in environment variables");
     }
-
-    const conn = await mongoose.connect(ENV.DB_URL, {
-      serverSelectionTimeoutMS: 5000,
-    });
-
+    const conn = await mongoose.connect(ENV.DB_URL);
     console.log("✅ Connected to MongoDB:", conn.connection.host);
-    return true;
   } catch (error) {
-    console.warn("⚠️ MongoDB connection failed; continuing without DB:", error.message);
-    return false;
+    console.error("❌ Error connecting to MongoDB", error);
+    process.exit(1); // 0 means success, 1 means failure
   }
 };
-
-  

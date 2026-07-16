@@ -1,25 +1,35 @@
-import './App.css'
-import { SignedIn, SignInButton, SignOutButton, UserButton } from '@clerk/clerk-react'
+import { useUser } from "@clerk/clerk-react";
+import { Navigate, Route, Routes } from "react-router";
+import HomePage from "./pages/HomePage";
+
+import { Toaster } from "react-hot-toast";
+import DashboardPage from "./pages/DashboardPage";
+import ProblemPage from "./pages/ProblemPage";
+import ProblemsPage from "./pages/ProblemsPage";
+import SessionPage from "./pages/SessionPage";
+import DocumentsPage from "./pages/DocumentsPage";
 
 function App() {
+  const { isSignedIn, isLoaded } = useUser();
+
+  // this will get rid of the flickering effect
+  if (!isLoaded) return null;
 
   return (
     <>
-      <h1>Welcome to SLIIT IQ</h1>
-      
-      <SignOutButton>
-        <SignInButton >
-          <button>Sign In</button>
-        </SignInButton> 
-      </SignOutButton>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/dashboard" element={isSignedIn ? <DashboardPage /> : <Navigate to={"/"} />} />
 
-      <SignedIn>
-        <SignOutButton />
-      </SignedIn>
-      
-      <UserButton />
+        <Route path="/problems" element={isSignedIn ? <ProblemsPage /> : <Navigate to={"/"} />} />
+        <Route path="/problem/:id" element={isSignedIn ? <ProblemPage /> : <Navigate to={"/"} />} />
+        <Route path="/session/:id" element={isSignedIn ? <SessionPage /> : <Navigate to={"/"} />} />
+        <Route path="/documents" element={isSignedIn ? <DocumentsPage /> : <Navigate to={"/"} />} />
+      </Routes>
+
+      <Toaster toastOptions={{ duration: 3000 }} />
     </>
-  )
+  );
 }
 
-export default App
+export default App;

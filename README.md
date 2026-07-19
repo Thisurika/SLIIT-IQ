@@ -12,14 +12,6 @@ Kuppiya is a collaborative learning platform where students can share coding que
 
 ---
 
-## 📸 Screenshot
-
-<p align="center">
-  <img src="./sc/1.png" alt="Kuppiya Screenshot" width="90%">
-</p>
-
----
-
 # 🧪 Environment Variables
 
 ## Backend (`/backend`)

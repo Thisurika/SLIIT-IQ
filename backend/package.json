@@ -12,12 +12,16 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@clerk/express": "^2.1.48",
+    "@google/generative-ai": "^0.24.1",
     "@stream-io/node-sdk": "^0.7.62",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
     "inngest": "^3.1.0",
     "mongoose": "^9.7.2",
+    "multer": "^2.2.0",
+    "pdf-parse": "^2.4.5",
     "stream-chat": "^9.24.0"
   },
   "devDependencies": {

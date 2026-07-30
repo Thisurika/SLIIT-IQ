@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useCallback } from "react";
 import { PROBLEMS } from "../data/problems";
 
 const STORAGE_KEY = "talent_iq_custom_problems";

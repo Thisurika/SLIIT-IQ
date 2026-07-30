@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router";
+import { Link } from "react-router";
 import Navbar from "../components/Navbar";
 import AddProblemModal from "../components/AddProblemModal";
 import { useProblems } from "../hooks/useProblems";
@@ -19,7 +19,6 @@ function ProblemsPage() {
   const [showAddModal, setShowAddModal] = useState(false);
   const [filter, setFilter] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
-  const navigate = useNavigate();
 
   const problems = Object.values(allProblems);
 

@@ -72,6 +72,7 @@ function DocumentsPage() {
 
   useEffect(() => {
     fetchDocuments();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const onUpload = async (event) => {
@@ -201,10 +202,10 @@ function DocumentsPage() {
                 <p className="text-sm font-semibold uppercase tracking-[0.3em] text-cyan-300">Documents</p>
                 <h2 className="text-xl font-bold text-slate-50">Study Library</h2>
               </div>
-              <label className="btn btn-primary btn-sm gap-2">
+              <label className={`btn btn-primary btn-sm gap-2 ${isUploading ? 'opacity-50 cursor-not-allowed' : ''}`}>
                 <UploadIcon className="size-4" />
-                <span>Upload</span>
-                <input type="file" accept=".pdf,application/pdf" className="hidden" onChange={onUpload} />
+                <span>{isUploading ? "Uploading..." : "Upload"}</span>
+                <input type="file" accept=".pdf,application/pdf" className="hidden" onChange={onUpload} disabled={isUploading} />
               </label>
             </div>
 

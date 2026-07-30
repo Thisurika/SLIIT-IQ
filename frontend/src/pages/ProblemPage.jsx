@@ -4,7 +4,7 @@ import { PROBLEMS } from "../data/problems";
 import { useProblems } from "../hooks/useProblems";
 import Navbar from "../components/Navbar";
 
-import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels";
+import { Panel, Group, Separator } from "react-resizable-panels";
 import ProblemDescription from "../components/ProblemDescription";
 import OutputPanel from "../components/OutputPanel";
 import CodeEditorPanel from "../components/CodeEditorPanel";
@@ -113,7 +113,7 @@ function ProblemPage() {
       <Navbar />
 
       <div className="flex-1">
-        <PanelGroup direction="horizontal">
+        <Group direction="horizontal">
           {/* left panel- problem desc */}
           <Panel defaultSize={40} minSize={30}>
             <ProblemDescription
@@ -124,11 +124,11 @@ function ProblemPage() {
             />
           </Panel>
 
-          <PanelResizeHandle className="w-2 bg-base-300 hover:bg-primary transition-colors cursor-col-resize" />
+          <Separator className="w-2 bg-base-300 hover:bg-primary transition-colors cursor-col-resize" />
 
           {/* right panel- code editor & output */}
           <Panel defaultSize={60} minSize={30}>
-            <PanelGroup direction="vertical">
+            <Group direction="vertical">
               {/* Top panel - Code editor */}
               <Panel defaultSize={70} minSize={30}>
                 <CodeEditorPanel
@@ -141,16 +141,16 @@ function ProblemPage() {
                 />
               </Panel>
 
-              <PanelResizeHandle className="h-2 bg-base-300 hover:bg-primary transition-colors cursor-row-resize" />
+              <Separator className="h-2 bg-base-300 hover:bg-primary transition-colors cursor-row-resize" />
 
               {/* Bottom panel - Output Panel*/}
 
               <Panel defaultSize={30} minSize={30}>
                 <OutputPanel output={output} />
               </Panel>
-            </PanelGroup>
+            </Group>
           </Panel>
-        </PanelGroup>
+        </Group>
       </div>
     </div>
   );

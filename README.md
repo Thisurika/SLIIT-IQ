@@ -12,6 +12,12 @@ Kuppiya is a collaborative learning platform where students can share coding que
 
 ---
 
+# Demo
+
+kuppiya-web.netlify.app
+
+---
+
 # 🧪 Environment Variables
 
 ## Backend (`/backend`)
